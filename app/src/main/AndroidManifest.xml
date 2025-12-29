@@ -12,6 +12,7 @@
     <!-- 定位相关权限（高德地图画线和定位需要） -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <!-- 存储权限（地图缓存需要） -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
