@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 这里的 name 必须和 Manifest 里的 theme 一致 -->
+    <style name="Theme.TravelPlanner" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- 主颜色 -->
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryVariant">#1976D2</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <!-- 悬浮按钮(FAB)需要的辅助色 -->
+        <item name="colorSecondary">#FF4081</item>
+        <item name="colorSecondaryVariant">#F50057</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <!-- 状态栏颜色 -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+    </style>
+</resources>

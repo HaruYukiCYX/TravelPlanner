@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.amap.api.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- 顶部悬浮控制栏：增强搜索功能 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/topSearchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:strokeWidth="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <!-- 默认显示的标题栏 -->
+                <LinearLayout
+                    android:id="@+id/layoutTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp">
+
+                    <ImageButton
+                        android:id="@+id/btnMenu"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@android:drawable/ic_menu_sort_by_size"
+                        app:tint="#1976D2" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="我的精彩行程"
+                        android:textColor="#333333"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/btnSearchTrigger"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@android:drawable/ic_menu_search"
+                        app:tint="#666666" />
+                </LinearLayout>
+
+                <!-- 激活搜索时显示的输入栏 (初始隐藏) -->
+                <LinearLayout
+                    android:id="@+id/layoutSearchInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp"
+                    android:visibility="gone">
+
+                    <ImageButton
+                        android:id="@+id/btnSearchBack"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@android:drawable/ic_menu_revert"
+                        app:tint="#666666" />
+
+                    <EditText
+                        android:id="@+id/etGlobalSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="搜索目的地..."
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:paddingStart="8dp"
+                        android:textSize="16sp" />
+
+                    <ImageButton
+                        android:id="@+id/btnSearchClear"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        app:tint="#666666" />
+                </LinearLayout>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 全局搜索建议列表：浮在地图上 -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardGlobalSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="75dp"
+            android:visibility="gone"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="10dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGlobalSuggestions"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="#FFFFFF" />
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="24dp"
+            android:text="新规划"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#1976D2"
+            app:icon="@android:drawable/ic_input_add"
+            app:iconTint="#FFFFFF" />
+
+        <!-- 新增：搜索结果预览预览卡片 (初始隐藏) -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSearchResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="16dp"
+            android:visibility="gone"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="12dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_icon_circle"
+                        android:padding="8dp"
+                        android:src="@android:drawable/ic_menu_mylocation"
+                        app:tint="#673AB7" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvResultName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="地点名称"
+                            android:textColor="#212121"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvResultAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="详细地址信息显示在这里"
+                            android:textColor="#757575"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/btnCloseResultCard"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        app:tint="#BDBDBD" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnStartPlanWithThis"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#673AB7"
+                    android:text="将此处设为终点开始规划"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp"
+                    app:icon="@android:drawable/ic_menu_directions" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <include layout="@layout/layout_bottom_sheet" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:layout_marginVertical="16dp"
+        android:background="@android:color/transparent">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="8dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="12dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="12dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="行程清单"
+                    android:textColor="#1976D2"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvItineraries"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>

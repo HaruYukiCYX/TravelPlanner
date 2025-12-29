@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- 关键点：固定宽高的图标，增加背景色用于调试 -->
+        <ImageView
+            android:id="@+id/ivSegIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_directions" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvRoute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="起点 ➔ 终点"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="交通工具"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvSegPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥0"
+            android:textColor="#1976D2"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- 只是为了占位，表示最后一段 -->
+        <View
+            android:id="@+id/timelineBottom"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
